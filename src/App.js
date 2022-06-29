@@ -28,7 +28,7 @@ class App extends Component {
 
     // now that we have an array of words, we can map over the array and access each word
     let translatedWordsArray = userInput.map(currentWord => { 
-      
+      // translatePigLatin(currentWord)
       // ACTION ITEM: use "currentWord" as a starting point for your code
       console.log("currentWord:", currentWord)
 
@@ -59,9 +59,9 @@ let translatePigLatin =(str) =>  {
     if (vowelsArray.indexOf(str[0]) > -1) {
         currentWord = str + "way";
         return currentWord;
-      } else if (
-        currentWord.includes("qu")){
-        currentWord = str + "qu" + "ay"
+      } else if (currentWord.search("qu")){
+        currentWord = str.substring(2) + "quay"  
+        return currentWord
       } else {
               let firstMatch = str.match(/[aeiou]/g) || 0;
               let vowel = str.indexOf(firstMatch[0]);
@@ -97,7 +97,7 @@ console.log(translatePigLatin(this.state.phrase))
     // ACTION ITEM: when you are ready for your full user experience, delete the test words in phrase so that is assigned an empty string
     this.setState({
       phrase: "",
-      phraseTranslated: "This is where the trasnlation will show",
+      phraseTranslated: "",
     })
   }
 
@@ -115,6 +115,7 @@ console.log(translatePigLatin(this.state.phrase))
   }
 
   render() {
+    // console.log("translatedWords:", this.state)
     return (
       <>
         <h1>Pig Latin Translator</h1>
@@ -138,7 +139,7 @@ console.log(translatePigLatin(this.state.phrase))
           <button onClick={this.restartGame}>Clear</button>
         </div>
         <p>{this.state.phraseTranslated}</p>
-        <footer>Coded by Darwin & Neco ~</footer>
+        <footer>Coded by Gene & Steven ~</footer>
       </>
     )
   }
